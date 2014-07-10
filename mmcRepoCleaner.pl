@@ -1,4 +1,10 @@
 #!/usr/bin/perl
+# change the MMCUSER to the username used for the admin account of your mmc instance
+# change the MMCPASS to the password for the admin account
+# change the URL to the base URL of your mmc
+# any issues read through the MMC API docs as there's a good chance the URL is incorrect of the JSON might have changed
+# NOTE...this is not threaded and can take some time pending the size of the repo
+# WARNING: it will remove all but the current deployed version
 
 use strict;
 use warnings;
@@ -36,7 +42,6 @@ sub InstalledApps {
         foreach my $data (@{$j->{'data'}}) {
 		push (@ids, $data->{'applications'}->[0]);		
         }
-	#print Dumper \@ids;
 	print LOG "Deployed IDs:\n";
 	foreach my $id(@ids) {
 		print LOG $id . "\n";
